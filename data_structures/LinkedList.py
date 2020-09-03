@@ -1,3 +1,7 @@
+from data_structures.iterators import LinkedListIterator
+from data_structures import LinkedListNode
+
+
 class LinkedList:
     def __init__(self, head=None):
         self.head = head
@@ -29,37 +33,3 @@ class LinkedList:
         for node in self:
             if not node.next:
                 return node
-
-
-class LinkedListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-    def __str__(self):
-        return hex(id(self))
-
-    def __add__(self, other):
-        if isinstance(other, LinkedListNode):
-            self.next = other
-        elif isinstance(other, LinkedList):
-            self.next = other.head
-        else:
-            raise TypeError
-
-
-class LinkedListIterator:
-    def __init__(self, node):
-        if isinstance(node, LinkedListNode):
-            self.node = node
-        elif isinstance(node, LinkedList):
-            self.node = node.head
-        else:
-            raise TypeError
-
-    def __next__(self):
-        if self.node:
-            cur_node = self.node
-            self.node = self.node.next
-            return cur_node
-        raise StopIteration
